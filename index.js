@@ -17,4 +17,8 @@ io.on('connection', (socket) => {
         console.log(`Smessage: ${msg}`);
         io.emit('message',msg);
     });
+    socket.on('disconnect', () => {
+        console.log('user Disconnected');
+        io.emit('message','user disconnected');
+    });
      });

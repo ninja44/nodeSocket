@@ -56,6 +56,13 @@
             $('#m').val('');
             return false;
         });
+
+        socket.on('connect', () => {
+            // emit = emitting to everyone
+            socket.emit('message','new user connected   ');
+            // ip = ${socket._socket.remoteAddress}
+        });
+
         socket.on('message', (msg) => {
             console.log(`Cmessage: ${msg}`);
             $("#message").append(`<li>${msg}</li>`);
