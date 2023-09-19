@@ -14,59 +14,22 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
 
     <!--bootstrap end -->
-    <style>
-        form {
-            padding: 20px; position: fixed; bottom: 0;width: 95%;
-        }
-        #message {list-style-type: none; margin: 0%;padding: 0%;width: 100%;}
-        #message li{
-            padding: 5px 10px;
-        }
-        #message li:nth-child(odd) {
-            background-color: brown;            
-        }
-    </style>
 </head>
 <body>
+    <div class="jumbotron-fluid">
+        <div class="container">
+            <h1 class="display-4">space chatterbot</h1>
+            <p class="lead">chill up select a room.</p>
+        </div>
+      </div>
     <div class="container-fluid">
         <div class="row">
-            <div class="col-lg-6">
-                <ul id="message"></ul>
-            </div>
-        </div>
-        <div class="row">
-            <div class="col-lg-6">
-                <form action="">
-                    <div class="input-group mb-3">
-                        <input id="m" type="text" class="form-control" placeholder="message" aria-label="message" aria-describedby="button-addon2">
-                        <button class="btn btn-lg btn-outline-secondary" type="submit" id="button-addon2">Send</button>
-                      </div>
-                </form>
-            </div>
+            <ul class="list-group">
+                <a href="/javascript"  class="list-group-item active">javascript</a>
+                <a href="/css"  class="list-group-item">css</a>
+                <a href="/swift"  class="list-group-item">swift</a>
+              </ul>
         </div>
     </div>
-
-
-
-    <script src="/socket.io/socket.io.js"></script>
-    <script>
-        const socket = io();
-        $('form').submit(() => {
-            socket.emit('message',$('#m').val());
-            $('#m').val('');
-            return false;
-        });
-
-        socket.on('connect', () => {
-            // emit = emitting to everyone
-            socket.emit('message','new user connected   ');
-            // ip = ${socket._socket.remoteAddress}
-        });
-
-        socket.on('message', (msg) => {
-            console.log(`Cmessage: ${msg}`);
-            $("#message").append(`<li>${msg}</li>`);
-        });
-    </script>
 </body>
 </html>
